@@ -9,7 +9,8 @@
 //   { word: "elephant", meaning: "象" }
 // ];
 
-const dataURL = "http://127.0.0.1:5500/Assignment_FlashCard/submission/data/data.json";
+//const dataURL = "http://127.0.0.1:5500/Assignment_FlashCard/submission/data/data.json";
+const dataURL = "https://github.com/msbuhtig/sumie_mase.fnd39/blob/main/data/data.json";
 const numQuestions = 10;
 const imgEnding = "images/bg_ending.jpeg";
 const imgCollect = "images/btn_correct.jfif";
