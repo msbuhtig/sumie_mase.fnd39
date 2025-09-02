@@ -44,7 +44,7 @@ const getJSON = function (url) {
     words = [...array];
     console.log(words);
   };
-  req.open("GET", "http://127.0.0.1:5500/Assignment_FlashCard/submission/data.json");
+  req.open("GET", url);
   req.responseType = "json";
   req.send();
   };
@@ -81,7 +81,7 @@ const showNextTopic = function () {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  getJSON("http://127.0.0.1:5500/Assignment_FlashCard/submission/data.json");
+  getJSON("https://github.com/msbuhtig/sumie_mase.fnd39/blob/main/data/data.json");
 });
 
 leftCard.addEventListener("click", () => {
@@ -108,3 +108,4 @@ gameStart.addEventListener("click", () => {
   rightAnswer.textContent = "不正解・・・";
   updateDisplay("block", "none", "block", "none");
 });
+
