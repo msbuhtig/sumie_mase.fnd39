@@ -1,0 +1,16 @@
+[
+  { "topic": "apple", "meaning": "りんご" },
+  { "topic": "banana", "meaning": "バナナ" },
+  { "topic": "cat", "meaning": "猫" },
+  { "topic": "dog", "meaning": "犬" },
+  { "topic": "elephant", "meaning": "象" },
+  { "topic": "breakfast", "meaning": "朝ごはん" },
+  { "topic": "lunch", "meaning": "昼ごはん" },
+  { "topic": "snack", "meaning": "おやつ" },
+  { "topic": "dinner", "meaning": "晩ごはん" },
+  { "topic": "sport", "meaning": "スポーツ" },
+  { "topic": "soccer", "meaning": "サッカー" },
+  { "topic": "baseball", "meaning": "野球" },
+  { "topic": "tennis", "meaning": "テニス" },
+  { "topic": "swimming", "meaning": "水泳" }
+]

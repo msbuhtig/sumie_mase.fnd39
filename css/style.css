@@ -1,0 +1,61 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+  background-image: url(../images/jungle_track.png);
+  background-size: cover;
+}
+.main {
+  display: none;
+}
+.topic {
+  height: 60px;
+  padding: 10px;
+  margin-top: 20px;
+  color: aquamarine;
+  font-size: 40px;
+  font-weight: bold;
+  vertical-align: middle;
+  background: hsl(14, 60%, 29%);
+}
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+  }
+}
+.card {
+  width: 300px;
+  height: 200px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 28px;
+  font-weight: bold;
+  vertical-align: middle;
+}
+.instruction {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #888;
+}
+.start {
+  margin: 300px auto;
+  height: 200px;
+}
+.ending {
+  display: none;
+}
+#btnStart {
+   width:300px;
+   height:100px;
+   font-size: xx-large;
+   font-weight: bold;
+}
