@@ -9,13 +9,20 @@
 //   { word: "elephant", meaning: "象" }
 // ];
 
+const dataURL = "http://127.0.0.1:5500/Assignment_FlashCard/submission/data/data.json";
+const numQuestions = 10;
+const imgEnding = "images/bg_ending.jpeg";
+const imgCollect = "images/btn_correct.jfif";
+const imgIncollect = "images/btn_incorrect.jfif";
+
 let words = [];
 let currentIdx = 0;
-let nextIdx = 1;
-let cntCollect = 0;
+let incollectIdx = 1;
+let isLeftCollect = true;
+let arrAskedIdx = [];
 
-const gameStart = document.getElementsByClassName("start")[0];
-const main = document.getElementsByClassName("main")[0];
+const gameStart = document.getElementById("start");
+const main = document.getElementById("main");
 const topic = document.getElementById("topic");
 const leftCard = document.getElementById("left-card");
 const leftWord = document.getElementById("left-word");
@@ -23,6 +30,8 @@ const leftAnswer = document.getElementById("left-answer");
 const rightCard = document.getElementById("right-card");
 const rightWord = document.getElementById("right-word");
 const rightAnswer = document.getElementById("right-answer");
+const ending = document.getElementById("ending");
+const nextGame = document.getElementById("btnNextGame");
 
 
 /**
@@ -42,58 +51,91 @@ const getJSON = function (url) {
   req.onload = (e) => {
     const array = req.response;
     words = [...array];
-    console.log(words);
   };
   req.open("GET", url);
   req.responseType = "json";
   req.send();
   };
 
-/**
- * @param {block|none} leftword - 左側のBOXに回答選択肢を表示するかどうか（"block" ⇒ 表示 / "none"  ⇒ 非表示）
- * @param {block|none} leftans - 左側のBOXに「正解」「不正解」を表示するかどうか（"block" ⇒ 表示 / "none"  ⇒ 非表示）
- * @param {block|none} rightword - 右側のBOXに回答選択肢を表示するかどうか（"block" ⇒ 表示 / "none"  ⇒ 非表示）
- * @param {block|none} rightans - 右側のBOXに「正解」「不正解」を表示するかどうか（"block" ⇒ 表示 / "none"  ⇒ 非表示）
- */
-const updateDisplay = function (leftword, leftans, rightword, rightans) {
-  leftWord.style.display = leftword;
-  leftAnswer.style.display = leftans;
-  rightWord.style.display = rightword;
-  rightAnswer.style.display = rightans;
-};
+const checkFinal = function () {
+  return (arrAskedIdx.length < numQuestions) ? true : false;
+}
+
+const postProc = function () {
+  main.remove();
+  document.body.style.backgroundImage = `url('${imgEnding}')`;
+  ending.style.display = "block";
+//  ending.textContent = "おめでとうござます！ 全問正解です";
+}
+
+const questionRoulette = function () {
+  const targetIdx = (Math.floor(Math.random() * words.length));
+  if (arrAskedIdx.indexOf(targetIdx) !== -1) {
+    questionRoulette();
+  } else {
+    arrAskedIdx.push(targetIdx);
+    return targetIdx;
+  }
+}
+
+const incollectChoiceRoulette = function () {
+  const targetIdx = (Math.floor(Math.random() * words.length));
+  if (targetIdx === currentIdx || targetIdx === incollectIdx) {
+    incollectChoiceRoulette();
+  } else {
+    return targetIdx;
+  }
+}
 
 const showNextTopic = function () {
-  currentIdx = (currentIdx + 1) % words.length;
-  nextIdx = (nextIdx + 1) % words.length;
+  if (!checkFinal()) postProc();
+
+  if (isLeftCollect) {
+    leftCard.style.backgroundImage = "";
+  } else {
+    rightCard.style.backgroundImage = "";
+  }
+
+  currentIdx = questionRoulette();
+  incollectIdx = incollectChoiceRoulette();
   topic.textContent = words[currentIdx].topic;
   if (Math.round(Math.random()) === 0) {
     leftWord.textContent = words[currentIdx].meaning;
-    rightWord.textContent = words[nextIdx].meaning;
-    leftAnswer.textContent = "正解";
-    rightAnswer.textContent = "不正解・・・";
+    rightWord.textContent = words[incollectIdx].meaning;
+    isLeftCollect = true;
   } else {
-    leftWord.textContent = words[nextIdx].meaning;
+    leftWord.textContent = words[incollectIdx].meaning;;
     rightWord.textContent = words[currentIdx].meaning;
-    leftAnswer.textContent = "不正解・・・";
-    rightAnswer.textContent = "正解";
+    isLeftCollect = false;
   }
-  updateDisplay("block", "none", "block", "none");
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  getJSON("https://github.com/msbuhtig/sumie_mase.fnd39/blob/main/data/data.json");
+  getJSON(dataURL);
 });
 
 leftCard.addEventListener("click", () => {
   const prevIdx = currentIdx;
-  updateDisplay("none", "block", "block", "none");
+  if (isLeftCollect) {
+    leftWord.textContent = "";
+    leftCard.style.backgroundImage = `url('${imgCollect}')`;
+  } else {
+    rightWord.textContent = "";
+    rightCard.style.backgroundImage = `url('${imgCollect}')`;
+  }
   const timer = setTimeout(showNextTopic, 3000);
   if (prevIdx !== currentIdx) clearTimeout(timer);
 });
 
 rightCard.addEventListener("click", () => {
   const prevIdx = currentIdx;
-  updateDisplay("block", "none", "none", "block");
+  if (isLeftCollect) {
+    leftWord.textContent = "";
+    leftCard.style.backgroundImage = `url('${imgCollect}')`;
+  } else {
+    rightWord.textContent = "";
+    rightCard.style.backgroundImage = `url('${imgCollect}')`;
+  }
   const timer = setTimeout(showNextTopic, 3000);
   if (prevIdx !== currentIdx) clearTimeout(timer);
 });
@@ -101,11 +143,25 @@ rightCard.addEventListener("click", () => {
 gameStart.addEventListener("click", () => {
   gameStart.remove();
   main.style.display = "block";
-  topic.textContent = words[0].topic;
-  leftWord.textContent = words[0].meaning;
-  rightWord.textContent = words[1].meaning;
-  leftAnswer.textContent = "正解";
-  rightAnswer.textContent = "不正解・・・";
-  updateDisplay("block", "none", "block", "none");
+
+  currentIdx = questionRoulette();
+  incollectIdx = incollectChoiceRoulette();
+
+  topic.textContent = words[currentIdx].topic;
+  if (Math.round(Math.random()) === 0) {
+    leftWord.textContent = words[currentIdx].meaning;
+    rightWord.textContent = words[incollectIdx].meaning;
+    isLeftCollect = true;
+  } else {
+    leftWord.textContent = words[incollectIdx].meaning;;
+    rightWord.textContent = words[currentIdx].meaning;
+    isLeftCollect = false;
+  }
+
+  leftWord.style.display = "block";
+  rightWord.style.display = "block";
 });
 
+nextGame.addEventListener("click", () => {
+  location.reload();
+});

@@ -7,9 +7,6 @@ body {
   background-image: url(../images/jungle_track.png);
   background-size: cover;
 }
-.main {
-  display: none;
-}
 .topic {
   height: 60px;
   padding: 10px;
@@ -34,6 +31,7 @@ body {
   margin: 50px auto;
   padding: 20px;
   background: #ffffff;
+  background-size: cover;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   cursor: pointer;
@@ -46,16 +44,33 @@ body {
   font-size: 14px;
   color: #888;
 }
-.start {
+#start {
   margin: 300px auto;
   height: 200px;
 }
-.ending {
+#main {
+  display: none;
+}
+#ending {
   display: none;
 }
 #btnStart {
-   width:300px;
-   height:100px;
-   font-size: xx-large;
-   font-weight: bold;
+  width:300px;
+  height:200px;
+  background-image: url(../images/btn_start.jfif);
+  background-size: cover;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#btnNextGame {
+  width:300px;
+  height:200px;
+  background-image: url(../images/btn_nextgame.jfif);
+  background-size: cover;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
