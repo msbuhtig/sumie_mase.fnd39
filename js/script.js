@@ -69,36 +69,31 @@ const postProc = function () {
 //  ending.textContent = "おめでとうござます！ 全問正解です";
 }
 
-const questionRoulette = function () {
-  const targetIdx = (Math.floor(Math.random() * words.length));
-  if (arrAskedIdx.indexOf(targetIdx) !== -1) {
-    questionRoulette();
-  } else {
+const questionRoulette = function (targetIdx) {
+  if (arrAskedIdx.indexOf(targetIdx) === -1) {
     arrAskedIdx.push(targetIdx);
-    return targetIdx;
+  } else {
+    targetIdx = questionRoulette(Math.floor(Math.random() * words.length));
   }
+  return targetIdx;
 }
 
-const incollectChoiceRoulette = function () {
-  const targetIdx = (Math.floor(Math.random() * words.length));
-  if (targetIdx === currentIdx || targetIdx === incollectIdx) {
-    incollectChoiceRoulette();
-  } else {
-    return targetIdx;
-  }
+const incollectChoiceRoulette = function (targetIdx) {
+  console.log("targetIdx: ", targetIdx, "currentIdx: ", currentIdx, "incollectIdx: ", incollectIdx);
+
+  if (targetIdx === currentIdx || targetIdx === incollectIdx)
+    targetIdx = incollectChoiceRoulette(Math.floor(Math.random() * words.length));
+  return targetIdx;
 }
 
-const showNextTopic = function () {
-  if (!checkFinal()) postProc();
+const setIndex = function () {
+  currentIdx = questionRoulette(Math.floor(Math.random() * words.length));
+  incollectIdx = incollectChoiceRoulette(Math.floor(Math.random() * words.length));
+  console.log(currentIdx, incollectIdx);
+}
 
-  if (isLeftCollect) {
-    leftCard.style.backgroundImage = "";
-  } else {
-    rightCard.style.backgroundImage = "";
-  }
-
-  currentIdx = questionRoulette();
-  incollectIdx = incollectChoiceRoulette();
+const setCard = function () {
+  setIndex();
   topic.textContent = words[currentIdx].topic;
   if (Math.round(Math.random()) === 0) {
     leftWord.textContent = words[currentIdx].meaning;
@@ -108,7 +103,16 @@ const showNextTopic = function () {
     leftWord.textContent = words[incollectIdx].meaning;;
     rightWord.textContent = words[currentIdx].meaning;
     isLeftCollect = false;
+  }}
+
+const showNextTopic = function () {
+  if (!checkFinal()) postProc();
+  if (isLeftCollect) {
+    leftCard.style.backgroundImage = "";
+  } else {
+    rightCard.style.backgroundImage = "";
   }
+  setCard();
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -144,21 +148,7 @@ rightCard.addEventListener("click", () => {
 gameStart.addEventListener("click", () => {
   gameStart.remove();
   main.style.display = "block";
-
-  currentIdx = questionRoulette();
-  incollectIdx = incollectChoiceRoulette();
-
-  topic.textContent = words[currentIdx].topic;
-  if (Math.round(Math.random()) === 0) {
-    leftWord.textContent = words[currentIdx].meaning;
-    rightWord.textContent = words[incollectIdx].meaning;
-    isLeftCollect = true;
-  } else {
-    leftWord.textContent = words[incollectIdx].meaning;;
-    rightWord.textContent = words[currentIdx].meaning;
-    isLeftCollect = false;
-  }
-
+  setCard();
   leftWord.style.display = "block";
   rightWord.style.display = "block";
 });
@@ -166,4 +156,3 @@ gameStart.addEventListener("click", () => {
 nextGame.addEventListener("click", () => {
   location.reload();
 });
-
