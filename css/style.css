@@ -7,6 +7,7 @@ body {
   background-image: url(../images/jungle_track.png);
   background-size: cover;
 }
+
 .topic {
   height: 60px;
   padding: 10px;
@@ -42,8 +43,9 @@ body {
 .instruction {
   margin-top: 20px;
   font-size: 14px;
-  color: #888;
+  color: azure;
 }
+
 #start {
   margin: 300px auto;
   height: 200px;

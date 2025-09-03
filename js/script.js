@@ -11,8 +11,9 @@
 
 //const dataURL = "http://127.0.0.1:5500/Assignment_FlashCard/submission/data/data.json";
 const dataURL = "https://raw.githubusercontent.com/msbuhtig/sumie_mase.fnd39/main/data/data.json";
-const numQuestions = 10;
-const imgEnding = "images/bg_ending.jpeg";
+const numQuestions = 3;
+const imgEnding = "images/ending.jpeg";
+const imgBadEnding = "images/badending.jfif";
 const imgCollect = "images/btn_correct.jfif";
 const imgIncollect = "images/btn_incorrect.jfif";
 
@@ -115,6 +116,12 @@ const showNextTopic = function () {
   setCard();
 };
 
+const showBadEnding = function () {
+    main.remove();
+    document.body.style.backgroundImage = `url('${imgBadEnding}')`;
+    ending.style.display = "block";
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   getJSON(dataURL);
 });
@@ -124,25 +131,27 @@ leftCard.addEventListener("click", () => {
   if (isLeftCollect) {
     leftWord.textContent = "";
     leftCard.style.backgroundImage = `url('${imgCollect}')`;
+    const timer = setTimeout(showNextTopic, 3000);
+    if (prevIdx !== currentIdx) clearTimeout(timer);
   } else {
-    rightWord.textContent = "";
-    rightCard.style.backgroundImage = `url('${imgCollect}')`;
+    leftWord.textContent = "";
+    leftCard.style.backgroundImage = `url('${imgIncollect}')`;
+    const timer = setTimeout(showBadEnding, 1000);
   }
-  const timer = setTimeout(showNextTopic, 3000);
-  if (prevIdx !== currentIdx) clearTimeout(timer);
 });
 
-rightCard.addEventListener("click", () => {
+rightCard.addEventListener("click", () => { // 右のカードをクリックしたら
   const prevIdx = currentIdx;
-  if (isLeftCollect) {
-    leftWord.textContent = "";
-    leftCard.style.backgroundImage = `url('${imgCollect}')`;
+  if (isLeftCollect) {  // 左のカードが正解だったら
+    rightWord.textContent = "";
+    rightCard.style.backgroundImage = `url('${imgIncollect}')`; // 右のカードに 失敗 の画像を表示
+    const timer = setTimeout(showBadEnding, 1000);
   } else {
     rightWord.textContent = "";
     rightCard.style.backgroundImage = `url('${imgCollect}')`;
+    const timer = setTimeout(showNextTopic, 3000);
+    if (prevIdx !== currentIdx) clearTimeout(timer);
   }
-  const timer = setTimeout(showNextTopic, 3000);
-  if (prevIdx !== currentIdx) clearTimeout(timer);
 });
 
 gameStart.addEventListener("click", () => {
