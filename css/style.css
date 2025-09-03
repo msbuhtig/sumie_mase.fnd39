@@ -42,6 +42,12 @@ body {
   font-size: 28px;
   font-weight: bold;
   vertical-align: middle;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.words {
+  width: 90%;
 }
 .instruction {
   margin-top: 20px;
@@ -78,5 +84,4 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
 }

@@ -8,14 +8,8 @@
   {
     "studyday": "Day1",
     "docname": "プログラミングの基礎",
-    "topic": "JavaScriptを学ぶ理由は？",
-    "meaning": "日常的に使っているブラウザで使用されている"
-  },
-  {
-    "studyday": "Day1",
-    "docname": "プログラミングの基礎",
     "topic": "データ型にはどのような種類がありますか？",
-    "meaning": "数値（number)、文字列（string）、ブーリアン（boolean）など"
+    "meaning": "数値（number)、文字列（string）など"
   },
   {
     "studyday": "Day1",
@@ -26,26 +20,8 @@
   {
     "studyday": "Day1",
     "docname": "変数入門",
-    "topic":  "どうやって変数を宣言しますか？",
-    "meaning": "[キーワード（let/const)] [変数名]  例）let result;"
-  },
-  {
-    "studyday": "Day1",
-    "docname": "変数入門",
-    "topic": "どうやって値を変数に代入しますか？",
-    "meaning": "[変数名] [代入演算子（=）] [値]  例）result = 0;"
-  },
-  {
-    "studyday": "Day1",
-    "docname": "変数入門",
     "topic": "変数とは何ですか？",
     "meaning": "値を入れる名前付きの箱のようなもの"
-  },
-  {
-    "studyday": "Day2",
-    "docname": "関数入門",
-    "topic": "関数って何？",
-    "meaning": "細かな指示を１かたまりにし、それにラベルをつけます。"
   },
   {
     "studyday": "Day2",
@@ -66,12 +42,6 @@
     "meaning":  "undefined"
   },
   {
-    "studyday": "Day2",
-    "docname": "関数の構成要素",
-    "topic": "return キーワードとは何ですか？ 何をするものですか？",
-    "meaning": "関数から値をアウトプットさせるためのもの"
-  },
-  {
     "studyday": "Day3",
     "docname": "比較入門",
     "topic": "ブーリアンとは何？",
@@ -85,20 +55,8 @@
   },
   {
     "studyday": "Day3",
-    "docname": "比較入門",
-    "topic":  "比較演算子（comparison operator）とは何？ 例をあげてください。",
-    "meaning": "「===」「>」「<=」など"
-  },
-  {
-    "studyday": "Day3",
     "docname": "HTML基礎編",
     "topic": "HTMLファイルの役割は？",
     "meaning": "webページの内容と構成を記述する"
-  },
-  {
-    "studyday": "Day3",
-    "docname": "比較入門",
-    "topic":  "タグの例をいくつか挙げてください。",
-    "meaning": "「<p>」「<h1> ～ <h6>」「<div>」など"
   }
 ]

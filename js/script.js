@@ -24,6 +24,7 @@ const rightCard = document.getElementById("right-card");
 const ending = document.getElementById("ending");
 const nextGame = document.getElementById("btnNextGame");
 
+const leftWord = document.getElementById("left-words");
 
 /**
  * @param {string} url - JSONファイルのパス
@@ -86,11 +87,12 @@ const setCard = function () {
   setIndex();
   topic.textContent = words[currentIdx].topic;
   if (Math.round(Math.random()) === 0) {
-    leftCard.textContent = words[currentIdx].meaning;
+//    leftCard.textContent = words[currentIdx].meaning;
+    leftWord.textContent = words[currentIdx].meaning;
     rightCard.textContent = words[incollectIdx].meaning;
     isLeftCollect = true;
   } else {
-    leftCard.textContent = words[incollectIdx].meaning;;
+    leftWord.textContent = words[incollectIdx].meaning;;
     rightCard.textContent = words[currentIdx].meaning;
     isLeftCollect = false;
   }}

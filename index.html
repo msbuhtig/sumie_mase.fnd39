@@ -5,7 +5,6 @@
   <title>DIG 基礎コースの振り返り</title>
   <link rel="stylesheet" type="text/css" href="css/style.css" />
   <script type="text/javascript" src="js/script.js" defer></script>
-  <script type="text/javascript">resizeto(1536,1024);</script>
 </head>
 <body>
   <div class="instruction">使用している画像はすべて生成AIを使って作成しています</button></div>
@@ -13,10 +12,14 @@
   <div id="main">
     <div class="topic" id="topic"></div>
     <div class="container">
-      <div class="card" id="left-card"></div>
-      <div class="card" id="right-card"></div>
+      <div class="card" id="left-card">
+        <div class="words" id="left-words">test</div>
+      </div>
+      <div class="card" id="right-card">
+        <p class="words" id="right-words"></p>
+      </div>
     </div>
-    <div class="instruction">正解だと思うカードをクリックしてください</div>
+    <div class="instruction" style="font-size: 32px;">正解だと思うカードをクリックしてください</div>
   </div>
   <div id="ending"><button id="btnNextGame"></button></div>
 </body>
