@@ -5,7 +5,10 @@ body {
   padding: 0;
   background-color: #f4f4f9;
   background-image: url(../images/jungle_track.png);
+  background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
 }
 
 .topic {
@@ -27,8 +30,8 @@ body {
   }
 }
 .card {
-  width: 300px;
-  height: 200px;
+  width:35%;
+  height: 35vw;
   margin: 50px auto;
   padding: 20px;
   background: #ffffff;
