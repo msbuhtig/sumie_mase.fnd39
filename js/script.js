@@ -2,7 +2,8 @@
 // 1行目に記載している 'use strict' は削除しないでください
 
 //const dataURL = "http://127.0.0.1:5500/Assignment_FlashCard/submission/data/data.json";
-const dataURL = "https://raw.githubusercontent.com/msbuhtig/sumie_mase.fnd39/main/data/data.json";
+const dataURL_DIG = "https://raw.githubusercontent.com/msbuhtig/sumie_mase.fnd39/main/data/data_DIG.json";
+const dataURL_Eng = "https://raw.githubusercontent.com/msbuhtig/sumie_mase.fnd39/main/data/data_EnglWords.json";
 const numQuestions = 3;
 const imgMain = "images/jungle_track.png";
 const imgEnding = "images/ending.jpeg";
@@ -15,8 +16,12 @@ let currentIdx = 0;
 let incollectIdx = 1;
 let isLeftCollect = true;
 let arrAskedIdx = [];
+let dataURL = "https://raw.githubusercontent.com/msbuhtig/sumie_mase.fnd39/main/data/data.json";
+let selectId = 0;
 
 const gameStart = document.getElementById("start");
+const selector = document.getElementById("selector");
+const db = document.getElementById("db");
 const main = document.getElementById("main");
 const topic = document.getElementById("topic");
 const leftCard = document.getElementById("left-card");
@@ -24,7 +29,6 @@ const rightCard = document.getElementById("right-card");
 const ending = document.getElementById("ending");
 const nextGame = document.getElementById("btnNextGame");
 
-const leftWord = document.getElementById("left-words");
 
 /**
  * @param {string} url - JSONファイルのパス
@@ -57,7 +61,6 @@ const postProc = function () {
   main.style.display = "none";
   document.body.style.backgroundImage = `url('${imgEnding}')`;
   ending.style.display = "block";
-//  ending.textContent = "おめでとうござます！ 全問正解です";
 }
 
 const questionRoulette = function (targetIdx) {
@@ -70,8 +73,6 @@ const questionRoulette = function (targetIdx) {
 }
 
 const incollectChoiceRoulette = function (targetIdx) {
-  console.log("targetIdx: ", targetIdx, "currentIdx: ", currentIdx, "incollectIdx: ", incollectIdx);
-
   if (targetIdx === currentIdx || targetIdx === incollectIdx)
     targetIdx = incollectChoiceRoulette(Math.floor(Math.random() * words.length));
   return targetIdx;
@@ -80,19 +81,17 @@ const incollectChoiceRoulette = function (targetIdx) {
 const setIndex = function () {
   currentIdx = questionRoulette(Math.floor(Math.random() * words.length));
   incollectIdx = incollectChoiceRoulette(Math.floor(Math.random() * words.length));
-  console.log(currentIdx, incollectIdx);
 }
 
 const setCard = function () {
   setIndex();
   topic.textContent = words[currentIdx].topic;
   if (Math.round(Math.random()) === 0) {
-//    leftCard.textContent = words[currentIdx].meaning;
-    leftWord.textContent = words[currentIdx].meaning;
+    leftCard.textContent = words[currentIdx].meaning;
     rightCard.textContent = words[incollectIdx].meaning;
     isLeftCollect = true;
   } else {
-    leftWord.textContent = words[incollectIdx].meaning;;
+    leftCard.textContent = words[incollectIdx].meaning;;
     rightCard.textContent = words[currentIdx].meaning;
     isLeftCollect = false;
   }}
@@ -147,10 +146,18 @@ rightCard.addEventListener("click", () => {
 
 gameStart.addEventListener("click", () => {
   gameStart.style.display = "none";
+  selector.style.display = "none";
   main.style.display = "block";
   setCard();
 });
 
 nextGame.addEventListener("click", () => {
   location.reload();
+  db.options[selectId].selected = true;
 });
+
+db.onchange = function(){
+  if (this.value === "DIG") dataURL = dataURL_DIG;
+  if (this.value === "English") dataURL = dataURL_Eng;
+  getJSON(dataURL);
+}
