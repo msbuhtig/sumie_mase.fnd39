@@ -31,7 +31,7 @@ body {
 }
 .card {
   width:35%;
-  height: 35vw;
+  height: 23vw;
   margin: 50px auto;
   padding: 20px;
   background: #ffffff;
@@ -78,4 +78,5 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
 }
