@@ -126,7 +126,7 @@ leftCard.addEventListener("click", () => {
   } else {
     leftCard.textContent = "";
     leftCard.style.backgroundImage = `url('${imgIncollect}')`;
-    const timer = setTimeout(showBadEnding, 1000);
+    const timer = setTimeout(showBadEnding, 3000);
   }
 });
 
@@ -135,7 +135,7 @@ rightCard.addEventListener("click", () => {
   if (isLeftCollect) {
     rightCard.textContent = "";
     rightCard.style.backgroundImage = `url('${imgIncollect}')`;
-    const timer = setTimeout(showBadEnding, 1000);
+    const timer = setTimeout(showBadEnding, 3000);
   } else {
     rightCard.textContent = "";
     rightCard.style.backgroundImage = `url('${imgCollect}')`;
@@ -160,4 +160,5 @@ db.onchange = function(){
   if (this.value === "DIG") dataURL = dataURL_DIG;
   if (this.value === "English") dataURL = dataURL_Eng;
   getJSON(dataURL);
+
 }
