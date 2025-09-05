@@ -4,7 +4,7 @@
 //const dataURL = "http://127.0.0.1:5500/Assignment_FlashCard/submission/data/data.json";
 const dataURL_DIG = "https://raw.githubusercontent.com/msbuhtig/sumie_mase.fnd39/main/data/data_DIG.json";
 const dataURL_Eng = "https://raw.githubusercontent.com/msbuhtig/sumie_mase.fnd39/main/data/data_EnglWords.json";
-const numQuestions = 3;
+const numQuestions = 2;
 const imgMain = "images/jungle_track.png";
 const imgEnding = "images/ending.jpeg";
 const imgBadEnding = "images/badending.jfif";
@@ -162,3 +162,4 @@ db.onchange = function(){
   getJSON(dataURL);
 
 }
+
