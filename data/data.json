@@ -13,12 +13,6 @@
   },
   {
     "studyday": "Day1",
-    "docname": "プログラミングの基礎",
-    "topic": "式（expression）とは何のことでしたか？",
-    "meaning": "値を導き出すひとまとまりのコードのこと"
-  },
-  {
-    "studyday": "Day1",
     "docname": "変数入門",
     "topic": "変数とは何ですか？",
     "meaning": "値を入れる名前付きの箱のようなもの"
@@ -49,14 +43,9 @@
   },
   {
     "studyday": "Day3",
-    "docname": "比較入門",
-    "topic": "式（expression）とは何？",
-    "meaning": "１つの値を導き出すコードの単位"
-  },
-  {
-    "studyday": "Day3",
     "docname": "HTML基礎編",
     "topic": "HTMLファイルの役割は？",
     "meaning": "webページの内容と構成を記述する"
   }
 ]
+
