@@ -168,13 +168,16 @@ db.onchange = function(){
 
 // 参考サイト）https://jp-seemore.com/web/28716/
 ////////////////////////////////////////////////////////////////
+const dbgConsole = document.getElementById("debug");
 function updateLayout() {
   if (screen.orientation.type.includes("portrait")) {
-    console.log("縦長のレイアウトを適用します。");
+    console.log("縦長のレイアウトを適用します");
+    dbgConsole.innerText = "縦長のレイアウトを適用します";
     document.body.classList.add("portrait");
     document.body.classList.remove("landscape");
   } else {
-    console.log("横長のレイアウトを適用します。");
+    console.log("横長のレイアウトを適用します");
+    dbgConsole.innerText = "横長のレイアウトを適用します";
     document.body.classList.add("landscape");
     document.body.classList.remove("portrait");
   }
