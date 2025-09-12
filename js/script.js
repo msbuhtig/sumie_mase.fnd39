@@ -4,7 +4,7 @@
 //const dataURL = "http://127.0.0.1:5500/Assignment_FlashCard/submission/data/data.json";
 const dataURL_DIG = "https://raw.githubusercontent.com/msbuhtig/sumie_mase.fnd39/main/data/data_DIG.json";
 const dataURL_Eng = "https://raw.githubusercontent.com/msbuhtig/sumie_mase.fnd39/main/data/data_EnglWords.json";
-const numQuestions = 10;
+const numQuestions = 3;
 const imgMain = "images/jungle_track.png";
 const imgEnding = "images/ending.jpeg";
 const imgBadEnding = "images/badending.jfif";
@@ -160,7 +160,63 @@ db.onchange = function(){
   if (this.value === "DIG") dataURL = dataURL_DIG;
   if (this.value === "English") dataURL = dataURL_Eng;
   getJSON(dataURL);
-
 }
 
+////////////////////////////////////////////////////////////////
+// 発表後に追加した部分
+////////////////////////////////////////////////////////////////
 
+// 参考サイト）https://jp-seemore.com/web/28716/
+////////////////////////////////////////////////////////////////
+function updateLayout() {
+  if (screen.orientation.type.includes("portrait")) {
+    console.log("縦長のレイアウトを適用します。");
+    document.body.classList.add("portrait");
+    document.body.classList.remove("landscape");
+  } else {
+    console.log("横長のレイアウトを適用します。");
+    document.body.classList.add("landscape");
+    document.body.classList.remove("portrait");
+  }
+}
+
+screen.orientation.addEventListener("change", updateLayout);
+updateLayout(); // 初期化時にも呼び出す
+
+
+
+// 参考サイト）https://www.jslab.digibeatrix.com/javascript-api/dom-manipulation/javascript-swipe-feature-implementation/
+////////////////////////////////////////////////////////////////
+let startX, startY, endX, endY; // 座標を記録する変数
+
+// タッチ開始時の座標を取得
+document.addEventListener('touchstart', function (e) {
+  startX = e.touches[0].clientX;
+  startY = e.touches[0].clientY;
+});
+
+// タッチ終了時の座標を取得し、スワイプ方向を判定
+document.addEventListener('touchend', function (e) {
+  endX = e.changedTouches[0].clientX;
+  endY = e.changedTouches[0].clientY;
+
+  let diffX = endX - startX; // X方向の移動距離
+  let diffY = endY - startY; // Y方向の移動距離
+
+  // 横方向のスワイプ判定
+  if (Math.abs(diffX) > Math.abs(diffY)) {
+    if (diffX > 0) {
+      console.log('右スワイプ');
+    } else {
+      console.log('左スワイプ');
+    }
+  } 
+  // 縦方向のスワイプ判定
+  else {
+    if (diffY > 0) {
+      console.log('下スワイプ');
+    } else {
+      console.log('上スワイプ');
+    }
+  }
+});
