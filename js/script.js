@@ -168,8 +168,8 @@ db.onchange = function(){
 
 // 参考サイト）https://jp-seemore.com/web/28716/
 ////////////////////////////////////////////////////////////////
-const dbgConsole = document.getElementById("debug");
 function updateLayout() {
+  const dbgConsole = document.getElementById("dbg1");
   if (screen.orientation.type.includes("portrait")) {
     console.log("縦長のレイアウトを適用します");
     dbgConsole.innerText = "縦長のレイアウトを適用します";
@@ -185,7 +185,6 @@ function updateLayout() {
 
 screen.orientation.addEventListener("change", updateLayout);
 updateLayout(); // 初期化時にも呼び出す
-
 
 
 // 参考サイト）https://www.jslab.digibeatrix.com/javascript-api/dom-manipulation/javascript-swipe-feature-implementation/
@@ -207,19 +206,24 @@ document.addEventListener('touchend', function (e) {
   let diffY = endY - startY; // Y方向の移動距離
 
   // 横方向のスワイプ判定
+  const dbgConsole = document.getElementById("dbg2");
   if (Math.abs(diffX) > Math.abs(diffY)) {
     if (diffX > 0) {
       console.log('右スワイプ');
+      dbgConsole.innerText = "右スワイプ";
     } else {
       console.log('左スワイプ');
+      dbgConsole.innerText = "左スワイプ";
     }
   } 
   // 縦方向のスワイプ判定
   else {
     if (diffY > 0) {
       console.log('下スワイプ');
+      dbgConsole.innerText = "下スワイプ";
     } else {
       console.log('上スワイプ');
+      dbgConsole.innerText = "上スワイプ";
     }
   }
 });
