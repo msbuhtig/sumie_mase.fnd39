@@ -130,6 +130,7 @@ body {
   align-items: center; /* 縦並び時に中央寄せ */
 }
 
+
 /* カード（デフォルトは横並び用） */
 .card {
   width: 35%;              /* 横画面用 */
@@ -157,10 +158,22 @@ body {
 
 /* 縦画面（スマホ）は 1 列 & 幅 80% */
 .portrait .card {
-  width: 90%;
-  max-width: 90%;       /* 念のため横幅制限を90%に固定 */
-  aspect-ratio: 3 / 2;  /* 比率は維持 */
+  flex: 0 0 auto;       /* 勝手に広がらないように固定 */
+  width: 90%;           /* 横幅は画面の90% */
+  aspect-ratio: 3 / 2;  /* 縦横比3:2を維持 */
   height: auto;
-  margin: 20px auto;    /* 上下20px・左右自動（中央寄せ） */
+  margin: 20px auto;    /* 上下20px、左右は自動で中央寄せ */
   font-size: clamp(20px, 6vw, 32px);
+
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  white-space: normal;
+  word-wrap: break-word;
 }
