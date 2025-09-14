@@ -1,3 +1,6 @@
+/* =========================
+   基本スタイル
+   ========================= */
 body {
   font-family: Arial, sans-serif;
   text-align: center;
@@ -12,168 +15,109 @@ body {
 }
 
 .topic {
-  height: 60px;
-  padding: 10px;
-  margin-top: 20px;
-  color: aquamarine;
-  font-size: 40px;
-  font-weight: bold;
-  vertical-align: middle;
-  background: hsl(14, 60%, 29%);
-}
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  @media screen and (max-width: 767px) {
-    flex-direction: column;
-  }
-}
-.card {
-  width:35%;
-  height: 23vw;
-  margin: 50px auto;
-  padding: 20px;
-  background: #ffffff;
-  background-size: cover;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 28px;
-  font-weight: bold;
-  vertical-align: middle;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.words {
   width: 90%;
+  margin: 20px auto;
+  padding: 10px;
+  color: aquamarine;
+  font-size: clamp(24px, 6vw, 40px); /* 縦持ちで少し大きめ */
+  font-weight: bold;
+  text-align: center;
+  white-space: normal;
+  word-wrap: break-word;
+  background: hsl(14, 60%, 29%);
+  border-radius: 8px;
 }
+
 .instruction {
   margin-top: 20px;
-  font-size: 14px;
+  font-size: clamp(14px, 4vw, 18px); /* スマホでも読みやすいサイズ */
   color: azure;
 }
 
-#start {
-  margin: 300px auto;
-  height: 200px;
-}
-#main {
-  display: none;
-}
-#ending {
-  display: none;
-}
-#btnStart {
-  width:300px;
-  height:200px;
-  background-image: url(../images/btn_start.jfif);
-  background-size: cover;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-#btnNextGame {
-  width:300px;
-  height:200px;
-  background-image: url(../images/btn_nextgame.jfif);
-  background-size: cover;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-/*
-////////////////////////////////////////////////////////////////
-// 発表後に追加した部分
-////////////////////////////////////////////////////////////////
-*/
-
-/*
-参考サイト）https://jp-seemore.com/web/28716/
-////////////////////////////////////////////////////////////////
-*/
-.portrait .container {
-  flex-direction: column;
-}
-
-.landscape .container {
-  flex-direction: row;
-}
-
-
-/* テキストを画面幅で折り返す */
-.topic, .card {
-  white-space: normal;     /* 自動で折り返す */
-  word-wrap: break-word;   /* 単語の途中でも折り返す */
-  text-align: center;      /* 中央寄せ */
-}
-
-/* ボタン（カード）の幅を画面幅の90%にする */
+/* =========================
+   コンテナとカード
+   ========================= */
 .container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
 
-/* 横画面（PCやタブレット横持ち）：横並び */
-.landscape .container {
-  flex-direction: row;
-}
-
-/* 縦画面（スマホ縦持ち）：縦並び */
-.portrait .container {
-  flex-direction: column;
-  align-items: center; /* 縦並び時に中央寄せ */
-}
-
-
-/* カード（デフォルトは横並び用） */
 .card {
-  width: 35%;              /* 横画面用 */
+  width: 35%;                  /* 横画面用 */
   max-width: 500px;
-  aspect-ratio: 3 / 2;     /* 横:縦 = 3:2 固定 */
-  height: auto;            /* 高さは aspect-ratio に従う */
+  aspect-ratio: 3 / 2;         /* 縦横比固定 */
+  height: auto;
   margin: 20px auto;
   background: #ffffff;
   background-size: cover;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   border-radius: 10px;
   cursor: pointer;
 
   display: flex;
-  align-items: center;     /* 縦方向センタリング */
-  justify-content: center; /* 横方向センタリング */
+  align-items: center;         /* 縦中央 */
+  justify-content: center;     /* 横中央 */
   text-align: center;
 
   font-weight: bold;
   font-size: clamp(18px, 5vw, 28px);
 
-  white-space: normal;     /* 折り返し */
-  word-wrap: break-word;   /* 単語途中でも折り返し */
+  white-space: normal;         /* 折り返し */
+  word-wrap: break-word;
 }
 
-/* 縦画面（スマホ）は 1 列 & 幅 80% */
+/* =========================
+   横持ち（ランドスケープ）
+   ========================= */
+.landscape .container {
+  flex-direction: row;
+}
+
+/* =========================
+   縦持ち（ポートレート）
+   ========================= */
+.portrait .container {
+  flex-direction: column;      /* 縦並び */
+  align-items: center;         /* 横方向中央寄せ */
+  justify-content: flex-start; /* 上下方向の余白均等にしない */
+}
+
 .portrait .card {
-  flex: 0 0 auto;       /* 勝手に広がらないように固定 */
-  width: 90%;           /* 横幅は画面の90% */
-  aspect-ratio: 3 / 2;  /* 縦横比3:2を維持 */
-  height: auto;
-  margin: 20px auto;    /* 上下20px、左右は自動で中央寄せ */
-  font-size: clamp(20px, 6vw, 32px);
+  flex: 0 0 auto;              /* Flexboxで勝手に幅を伸ばさない */
+  width: 90%;                  /* 画面幅の90% */
+  max-width: 90%;              /* 上限も90% */
+  aspect-ratio: 3 / 2;         /* 縦横比維持 */
+  height: auto;         
+  margin: 20px auto;           /* 上下20px、左右中央寄せ */
+  font-size: clamp(22px, 6vw, 32px); /* 縦持ちで大きめ文字 */
+}
 
-  background: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+/* =========================
+   スタート・次へボタン
+   ========================= */
+#btnStart, #btnNextGame {
+  width: 300px;                
+  height: 200px;               
+  background-size: cover;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: none;
+  cursor: pointer;
+}
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-
-  white-space: normal;
-  word-wrap: break-word;
+/* 縦持ちスマホ用：画面幅に合わせる */
+.portrait #btnStart, 
+.portrait #btnNextGame {
+  width: 90%;                  /* 画面幅の90% */
+  max-width: 90%;
+  aspect-ratio: 3 / 2;         /* 縦横比固定 */
+  height: auto;                
+  position: relative;           /* 中央寄せは margin で調整 */
+  top: auto;
+  left: auto;
+  transform: none;
+  margin: 20px auto;           /* 上下20px、左右中央寄せ */
 }
