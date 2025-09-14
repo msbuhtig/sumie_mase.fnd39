@@ -157,8 +157,10 @@ body {
 
 /* 縦画面（スマホ）は 1 列 & 幅 80% */
 .portrait .card {
-  width: 80%;
-  aspect-ratio: 3 / 2;     /* 縦横比維持 */
-  height: auto;            /* 高さは自動 */
+  width: 90%;
+  max-width: 90%;       /* 念のため横幅制限を90%に固定 */
+  aspect-ratio: 3 / 2;  /* 比率は維持 */
+  height: auto;
+  margin: 20px auto;    /* 上下20px・左右自動（中央寄せ） */
   font-size: clamp(20px, 6vw, 32px);
 }
