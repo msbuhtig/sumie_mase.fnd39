@@ -157,5 +157,6 @@ body {
 /* 縦画面（スマホ）は1列＆幅90% */
 .portrait .card {
   width: 90%;
+  aspect-ratio: 3 / 2;     /* 縦横比固定 */
   font-size: clamp(20px, 6vw, 32px); /* 縦画面では文字少し大きめ */
 }
