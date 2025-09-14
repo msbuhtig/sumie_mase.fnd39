@@ -155,9 +155,9 @@ body {
   word-wrap: break-word;   /* 単語途中でも折り返し */
 }
 
-/* 縦画面（スマホ）は 1 列 & 幅 90% */
+/* 縦画面（スマホ）は 1 列 & 幅 80% */
 .portrait .card {
-  width: 90%;
+  width: 80%;
   aspect-ratio: 3 / 2;     /* 縦横比維持 */
   height: auto;            /* 高さは自動 */
   font-size: clamp(20px, 6vw, 32px);
