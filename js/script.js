@@ -171,13 +171,13 @@ db.onchange = function(){
 function updateLayout() {
   const dbgConsole = document.getElementById("dbg1");
   if (screen.orientation.type.includes("portrait")) {
-    console.log("縦長のレイアウトを適用します");
-    dbgConsole.innerText = "縦長のレイアウトを適用します";
+//    console.log("縦長のレイアウトを適用します");
+//    dbgConsole.innerText = "縦長のレイアウトを適用します";
     document.body.classList.add("portrait");
     document.body.classList.remove("landscape");
   } else {
-    console.log("横長のレイアウトを適用します");
-    dbgConsole.innerText = "横長のレイアウトを適用します";
+//    console.log("横長のレイアウトを適用します");
+//    dbgConsole.innerText = "横長のレイアウトを適用します";
     document.body.classList.add("landscape");
     document.body.classList.remove("portrait");
   }
@@ -209,21 +209,21 @@ document.addEventListener('touchend', function (e) {
   const dbgConsole = document.getElementById("dbg2");
   if (Math.abs(diffX) > Math.abs(diffY)) {
     if (diffX > 0) {
-      console.log('右スワイプ');
-      dbgConsole.innerText = "右スワイプ";
+//      console.log('右スワイプ');
+//      dbgConsole.innerText = "右スワイプ";
     } else {
-      console.log('左スワイプ');
-      dbgConsole.innerText = "左スワイプ";
+//      console.log('左スワイプ');
+//      dbgConsole.innerText = "左スワイプ";
     }
   } 
   // 縦方向のスワイプ判定
   else {
     if (diffY > 0) {
-      console.log('下スワイプ');
-      dbgConsole.innerText = "下スワイプ";
+//      console.log('下スワイプ');
+//      dbgConsole.innerText = "下スワイプ";
     } else {
-      console.log('上スワイプ');
-      dbgConsole.innerText = "上スワイプ";
+//      console.log('上スワイプ');
+//      dbgConsole.innerText = "上スワイプ";
     }
   }
 });
