@@ -132,11 +132,11 @@ body {
 
 /* カード（デフォルトは横並び用） */
 .card {
-  width: 35%;              /* 横画面では横幅35% */
+  width: 35%;              /* 横画面用 */
   max-width: 500px;
-  aspect-ratio: 3 / 2;     /* 縦横比固定 */
+  aspect-ratio: 3 / 2;     /* 横:縦 = 3:2 固定 */
+  height: auto;            /* 高さは aspect-ratio に従う */
   margin: 20px auto;
-  padding: 10px;
   background: #ffffff;
   background-size: cover;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -144,19 +144,21 @@ body {
   cursor: pointer;
 
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: center;     /* 縦方向センタリング */
+  justify-content: center; /* 横方向センタリング */
   text-align: center;
 
   font-weight: bold;
   font-size: clamp(18px, 5vw, 28px);
-  white-space: normal;
-  word-wrap: break-word;
+
+  white-space: normal;     /* 折り返し */
+  word-wrap: break-word;   /* 単語途中でも折り返し */
 }
 
-/* 縦画面（スマホ）は1列＆幅90% */
+/* 縦画面（スマホ）は 1 列 & 幅 90% */
 .portrait .card {
   width: 90%;
-  aspect-ratio: 3 / 2;     /* 縦横比固定 */
-  font-size: clamp(20px, 6vw, 32px); /* 縦画面では文字少し大きめ */
+  aspect-ratio: 3 / 2;     /* 縦横比維持 */
+  height: auto;            /* 高さは自動 */
+  font-size: clamp(20px, 6vw, 32px);
 }
