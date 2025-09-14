@@ -103,3 +103,59 @@ body {
 .landscape .container {
   flex-direction: row;
 }
+
+
+/* テキストを画面幅で折り返す */
+.topic, .card {
+  white-space: normal;     /* 自動で折り返す */
+  word-wrap: break-word;   /* 単語の途中でも折り返す */
+  text-align: center;      /* 中央寄せ */
+}
+
+/* ボタン（カード）の幅を画面幅の90%にする */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+/* 横画面（PCやタブレット横持ち）：横並び */
+.landscape .container {
+  flex-direction: row;
+}
+
+/* 縦画面（スマホ縦持ち）：縦並び */
+.portrait .container {
+  flex-direction: column;
+  align-items: center; /* 縦並び時に中央寄せ */
+}
+
+/* カード（デフォルトは横並び用） */
+.card {
+  width: 35%;              /* 横画面では横幅35% */
+  max-width: 500px;
+  aspect-ratio: 3 / 2;     /* 縦横比固定 */
+  margin: 20px auto;
+  padding: 10px;
+  background: #ffffff;
+  background-size: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  font-weight: bold;
+  font-size: clamp(18px, 5vw, 28px);
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+/* 縦画面（スマホ）は1列＆幅90% */
+.portrait .card {
+  width: 90%;
+  font-size: clamp(20px, 6vw, 32px); /* 縦画面では文字少し大きめ */
+}
