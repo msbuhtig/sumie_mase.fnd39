@@ -127,3 +127,5 @@ body {
 .words { width: 90%; }
 #main { display: none; }
 #ending { display: none; }
+#btnStart { background-image: url(../images/btn_start.jfif); }
+#btnNextGame { background-image: url(../images/btn_nextgame.jfif); }
