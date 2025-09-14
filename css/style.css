@@ -49,6 +49,7 @@ body {
   aspect-ratio: 3 / 2;         /* 縦横比固定 */
   height: auto;
   margin: 20px auto;
+  padding: 20px;
   background: #ffffff;
   background-size: cover;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
@@ -64,7 +65,7 @@ body {
   font-size: clamp(18px, 5vw, 28px);
 
   white-space: normal;         /* 折り返し */
-  word-wrap: break-word;
+/*  word-wrap: break-word; */
 }
 
 /* =========================
@@ -121,3 +122,8 @@ body {
   transform: none;
   margin: 20px auto;           /* 上下20px、左右中央寄せ */
 }
+
+
+.words { width: 90%; }
+#main { display: none; }
+#ending { display: none; }
